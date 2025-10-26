@@ -47,7 +47,7 @@ class SelectableCityBottomSheet extends StatelessWidget {
                         WeatherText(
                           text: snapshot.requireData ?? "-",
                           size: 18,
-                          color: isSelected ? ColorConstant.textWhite : ColorConstant.textBlack,
+                          color: isSelected ? ColorConstant.primaryTextColor : ColorConstant.secondaryTextColor,
                         ),
                       ],
                     ),
