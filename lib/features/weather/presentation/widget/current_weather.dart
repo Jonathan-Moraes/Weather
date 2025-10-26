@@ -7,17 +7,19 @@ class _CurrentWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
+    return Card(
       color: ColorConstant.primaryColor,
+      margin: EdgeInsets.all(SizeHelper.defaultPadding),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
       child: Padding(
-        padding: EdgeInsets.only(left: SizeHelper.defaultPadding, right: SizeHelper.defaultPadding, bottom: SizeHelper.mediumPadding),
+        padding: EdgeInsets.all(SizeHelper.defaultPadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            headerInformation(context),
-            Flexible(
-              child: wmoImage(),
-            )
+            Expanded(child: headerInformation(context)),
+            wmoImage(),
           ],
         ),
       ),
@@ -34,7 +36,7 @@ class _CurrentWeather extends StatelessWidget {
               WeatherText(
                 text: weatherViewModel.dailyWeatherState.cityName ?? "",
                 size: 20,
-                color: ColorConstant.textWhite,
+                color: ColorConstant.primaryTextColor,
                 weatherTextWeight: WeatherTextWeight.bold,
               ),
               BaseIconButton(
@@ -61,14 +63,14 @@ class _CurrentWeather extends StatelessWidget {
             builder: (context, settingsViewModel, child) => WeatherText(
               text: weatherViewModel.dailyWeatherState.getCurrentTemp(unit: settingsViewModel.temperatureUnit),
               size: 48,
-              color: ColorConstant.textWhite,
+              color: ColorConstant.primaryTextColor,
               weatherTextWeight: WeatherTextWeight.bold,
             ),
           ),
           WeatherText(
             text: weatherViewModel.getWMOLocalKeys(weatherViewModel.dailyWeatherState.getWMOCurrent()).localKey.tr(context: context),
             size: 32,
-            color: ColorConstant.textWhite,
+            color: ColorConstant.primaryTextColor,
             weatherTextWeight: WeatherTextWeight.regular,
           ),
         }
